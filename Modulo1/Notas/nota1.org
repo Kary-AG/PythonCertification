@@ -1,0 +1,59 @@
+* Fundamentos de Programción en Python
+** Fundamentos básicos
+*** ¿Cómo funciona un programa de computadora?
+
+Las computadoras pueden realizar tareas muy complejas, pero esta habilidad no es innata. Una computadora puede ejecutar solo operaciones extremadamente simples, por ejemplo, una computadora no puede evaluar el valor de una función matemática complicada por sí misma, naturalmente, la computadora podrá calcular esto, pero la computadora no es consciente de cosas como la distancia, la velocidad o el tiempo. Por lo tanto, es necesario instruir a la computadora para que:
+
++ Acepte un número que represente la distancia.
++ Acepte un número que represente el tiempo de viaje.
++ Divida el valor anterior por el segundo y almacene el resultado en la memoria.
++ Muestre el resultado (representando la velocidad promedio) en un formato legible.
+
+Estas cuatro acciones simples forman un **programa**.
+
+*** ¿Lenguajes?
+
+Un lenguaje es un medio (y una herramienta) para expresar y registrar pensamientos.(el lenguaje corporal, lengua materna).
+
+Las computadoras también tienen su propio lenguaje, llamado lenguaje **máquina**, el cual es muy rudimentario.
+
+Una computadora responde solo a un conjunto predeterminado de comandos conocidos. Un conjunto completo de comandos conocidos se llama lista de instrucciones, a veces abreviada IL (por sus siglas en inglés de Instruction List). Los diferentes tipos de computadoras pueden variar según el tamaño de sus IL y las instrucciones pueden ser completamente diferentes en diferentes modelos.
+**** Nota:
+
+
++ Los lenguajes máquina son desarrollados por humanos.
++ Cada día se crean nuevas palabras y desaparecen las viejas. Estos lenguajes se llaman lenguajes naturales.
+
+**** ¿Qué hace a un lenguaje?
+Cada idioma (máquina o natural, no importa) consta de los siguientes elementos:
++ ALFABETO
+  Conjunto de símbolos utilizados para formar palabras de un determinado idioma.
++ LÉXICO/ DICCIONARIO
+  Conjunto de palabras que el idioma ofrece a sus usuarios.
++ SINTAXIS
+  Conjunto de reglas (formales o informales, escritas o interpretadas intuitivamente) utilizadas para precisar si una determinada cadena de palabras forma una oración válida.
++ SEMÁNTICA
+  Un conjunto de reglas que determinan si una frase tiene sentido.
+
+
+La IL es, de hecho, **el alfabeto de un lenguaje máquina**. Este es el conjunto de símbolos más simple y principal que podemos usar para dar comandos a una computadora. Es la lengua materna de la computadora, sin embargo se necesita un lenguaje en el que los humanos puedan escribir sus programas y un lenguaje que las computadoras puedan usar para ejecutar los programas, tales lenguajes son a menudo llamados lenguajes de programación de alto nivel, permiten a los humanos expresar comandos a computadoras que son mucho más complejas que las ofrecidas por las IL.
+
+
+Un programa escrito en un lenguaje de programación de alto nivel se llama **código fuente**. Del mismo modo, el archivo que contiene el código fuente se llama **archivo fuente**.
+
+*** Compilación vs. Interpretación.
+ Un programador también puede cometer errores en cada uno de los cuatro sentidos anteriores.Supongamos que ha escrito correctamente un programa. ¿Cómo persuadimos a la computadora para que la ejecute? Tienes que convertir tu programa en lenguaje máquina.
+
+ Hay dos formas diferentes de **transformar un programa de un lenguaje de programación de alto nivel a un lenguaje de máquina:**
+
+ + COMPILACIÓN
+   El programa fuente se traduce una vez (sin embargo, esta ley debe repetirse cada vez que se modifique el código fuente) obteniendo un archivo que contiene el código de la máquina; ahora puedes distribuir el archivo en todo el mundo; el programa que realiza esta traducción se llama compilador o traductor.
+ + INTERPRETACIÓN
+    Tú (o cualquier usuario del código) puedes traducir el programa fuente cada vez que se ejecute; el programa que realiza este tipo de transformación se denomina intérprete, ya que interpreta el código cada vez que está destinado a ejecutarse; también significa que no puede distribuir el código fuente tal como está, porque el usuario final también necesita que el intérprete lo ejecute.
+** Python una herramienta, no un reptil
+Python es un lenguaje de programación de alto nivel, interpretado, orientado a objetos y de uso generalizado con semántica dinámica, que se utiliza para la programación de propósito general.
+
+*** Nota:
++ Python proviene de una vieja serie de comedia de la BBC llamada Monty Python's Flying Circus.
++ Python es el hecho de que en realidad es el trabajo de una persona.
++ Python fue creado por Guido van Rossum, nacido en 1956 en Haarlem, Países Bajos.
