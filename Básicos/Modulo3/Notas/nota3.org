@@ -1,0 +1,763 @@
+* Fundamentos de Programación en Python: Módulo 3
+
+** Tomando decisiones en Python
+
+Un programador escribe un programa y el programa hace preguntas.Afortunadamente, las computadoras solo conocen dos tipos de respuestas:
+    + Si, es cierto.
+    + No, esto es falso.
+Para hacer preguntas, Python utiliza un conjunto de operadores muy especiales.
+*** Operadores de Comparación
+**** El operador igual a (==)
+El operador == (igual a) compara los valores de dos operandos. Si son iguales, el resultado de la comparación es True. Si no son iguales, el resultado de la comparación es False.
+**** El operador no es igual a (!=)
+El operador != (no es igual a) también compara los valores de dos operandos. Aquí está la diferencia: si son iguales, el resultado de la comparación es False. Si no son iguales, el resultado de la comparación es True.
+**** Mayor que
+También se puede hacer una pregunta de comparación usando el operador > (mayor que).
+
+
+**** Mayor o igual que
+El operador mayor que tiene otra variante especial, una variante no estricta, pero se denota de manera diferente que la notación aritmética clásica: >= (mayor o igual que).
+
+
+**** Menor o igual que
+Como probablemente ya hayas adivinado, los operadores utilizados en este caso son: El operador < (menor que) y su hermano no estricto: <= (menor o igual que).
+*** Tabla de Prioridades
+| **Prioridad** | **Operador** |         |
+|---------------+--------------+---------|
+|             1 | +,-          | unario  |
+|             2 | **           |         |
+|             3 | *,/,%        |         |
+|             4 | +,-          | binario |
+|             5 | <,<=,>,>=    |         |
+|             6 | ==, !=       |         |
+*** Ejercicios
++ [Preguntas y respuestas]()
+
+*** Condiciones y ejecución condicional
+
+Se debe tener un mecanismo que le permita hacer algo **si se cumple una condición, y no hacerlo si no se cumple**.
+
+Python ofrece una instrucción especial. Debido a su naturaleza y su aplicación, se denomina instrucción condicional (o declaración condicional).
+
++ Ejecución condicional: La declaración if
+  #+BEGIN_SRC python
+  if cierto_o_no:
+    hacer_esto_si_cierto
+  #+END_SRC
+  + ¿Cómo funciona esta expresión?
+    + Si la expresión cierto_o_no representa la verdad (es decir, su valor no es igual a cero),la(s) declaración(es) con sangría se ejecutará.
+    + Si la expresión cierto_o_no no representa la verdad (es decir, su valor es igual a cero), las declaraciones con sangría se omitirá , y la siguiente instrucción ejecutada será la siguiente al nivel de la sangría original.
++ Ejecución condicional: la declaración if-else
+  *Si el clima es bueno, saldremos a caminar, de lo contrario, iremos al cine.*
+
+  Ahora sabemos lo que haremos si se cumplen las condiciones , y sabemos lo que haremos si no todo sale como queremos . En otras palabras, tenemos un "Plan B".
+
+  Python nos permite expresar dichos planes alternativos. Esto se hace con una segunda forma, ligeramente mas compleja, de la declaración condicional, la declaración if-else :
+  #+BEGIN_SRC python
+  if condición_true_or_false:
+      ejecuta_si_condición_true
+  else:
+      ejecuta_si_condición_false
+  #+END_SRC
+
+    + La ejecución de if-else es la siguiente:
+       + Si la condición se evalúa como Verdadero (su valor no es igual a cero), la instrucción ejecuta_si_condición_true se ejecuta, y la declaración condicional llega a su fin.
+       + Si la condición se evalúa como Falso (es igual a cero), la instrucción ejecuta_si_condición_false se ejecuta, y la declaración condicional llega a su fin.
+    + Declaraciones if-else anidadas
+      Primero, considera el caso donde la instrucción colocada después del if  es otro if.
+
+      #+BEGIN_SRC
+      if climaEsBueno:
+           if encontramosBuenRestaurante:
+              almorzar()
+           else:
+              comerSandwich()
+      else:
+           if hayBoletosDisponibles:
+              irAlCine()
+           else:
+              irDeCompras()
+       #END_SRC
++ La declaración elif
+  El segundo caso especial presenta otra nueva palabra clave de Python: elif. Como probablemente sospechas, es una forma más corta de else-if.
+
+  elif se usa para verificar más de una condición, y para detener cuando se encuentra la primera declaración verdadera.
+  #+BEGIN_SRC python
+  if climaBueno:
+      iraCaminar()
+  elif hayBoletosDisponibles:
+      IralCine()
+  elif mesasLibres:
+      almorzar()
+  else:
+      jugarAjedrezEnCasa()
+  #+END_SRC
+  La forma de ensamblar las siguientes declaraciones if-elif-else a veces se denomina **cascada**.
+  Se debe prestar atención adicional a este caso:
+
+   + No debes usar else sin un if precedente.
+   + Else siempre es la última rama de la cascada , independientemente de si has usado elif o no.
+   + Else es una parte opcional de la cascada, y puede omitirse.
+   + Si hay una rama else en la cascada, solo se ejecuta una de todas las ramas.
+   + Si no hay una rama else, es posible que no se ejecute ninguna de las opciones disponibles.
+
+*** Ejercicios
++ [Preguntas y Respuestas]()
++ [Operadores de comparación y ejcucion de Condicional]()
++ [La instrucción if Else]()
++ [If-Elif-Else]()
+** Puntos Clave
+1. Los operadores de comparación (o también denominados relacionales) se utilizan para comparar valores. La siguiente tabla ilustra cómo funcionan los operadores de comparación, asumiendo que x=0, y=1 y z=0:
+| **Operador** | **Descripción**                                                                                                           | **Ejemplo**                     |
+|--------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------|
+| ==           | Devuelve si los valores de los operandos son iguales, y False de lo contrario.                                            | x == y # False, x == z # True   |
+| !=           | Devuelve True si los valores de los operandos no son iguales, y False de lo contrario.                                    | x != y # True,   x != z # False |
+| >            | DevuelveTrue si el valor del operando izquierdo es mayor que el valor del operando derecho, y False de lo contrario.      | x > y # False,y > z # True      |
+| <            | Devuelve True si el valor del operando izquierdo es menor que el valor del operando derecho, y False de lo contrario.     | x < y # True y < z # False      |
+| >=           | Devuelve True si el valor del operando izquierdo es mayor o igual al valor del operando derecho, y False de lo contrario. |                                 |
+| <=           | Devuelve True si el valor del operando izquierdo es menor o igual al valor del operando derecho, y False de lo contrario. |                                 |
+2. Cuando desea ejecutar algún código solo si se cumple una determinada condición, puede usar una declaración condicional:
+   + Una única declaración if, por ejemplo:
+     #+BEGIN_SRC python
+     x = 10
+
+     if x == 10: # condición
+     print("x es igual a 10") # ejecutado si la condición es verdadera
+     #+END_SRC
+   + Una serie de declaraciones if, por ejemplo:
+     #+BEGIN_SRC python
+     x = 10
+
+     if x > 5: # condición uno
+        print("x es mayor que 5") # ejecutado si la condición uno es verdadera
+
+     if x <10: # condición dos
+        print("x es menor que 10") # ejecutado si la condición dos es verdadera
+
+     if x == 10: # condición tres
+        print("x es igual a 10") # ejecutado si la condición tres es verdadera
+    #+END_SRC
+    Cada declaración if se prueba por separado.
+   + Una declaración de if-else, por ejemplo:
+     #+BEGIN_SRC python
+     x = 10
+
+     if x < 10: # condición
+        print ("x es menor que 10") # ejecutado si la condición es Verdadera
+
+     else:
+        print ("x es mayor o igual a 10") # ejecutado si la condición es False
+    #+END_SRC
+   + Una serie de declaraciones if seguidas de un else, por ejemplo:
+     #+BEGIN_SRC python
+     x = 10
+
+     if x > 5: # Verdadero
+        print("x > 5")
+
+     if x > 8: # Verdadero
+        print("x > 8")
+
+     if x > 10: # Falso
+        print("x > 10")
+
+     else:
+        print("Se ejecutará el else")
+    #+END_SRC
+
+     Cada if se prueba por separado. El cuerpo de else se ejecuta si el último if es False.
+   + La declaración  if-elif-else, por ejemplo:
+     #+BEGIN_SRC  python
+     x = 10
+
+     if  x == 10: # Verdadero
+        print("x == 10")
+
+     if x > 15: # Falso
+        print("x > 15")
+
+     elif x > 10: # Falso
+        print("x > 10")
+
+     elif x > 5: # Verdadero
+        print("x > 5")
+
+     else:
+        print("No se ejecutará el else")
+        #+END_SRC
+
+        Si la condición para if es False, el programa verifica las condiciones de los bloques elif posteriores: el primer elif que sea True es el que se ejecuta. Si todas las condiciones son False, se ejecutará el bloque else.
+
+   + Declaraciones condicionales anidadas, ejemplo:
+     #+BEGIN_SRC python
+     x = 10
+
+     if x > 5: # Verdadero
+        if x == 6: # Falso
+            print("anidado: x == 6")
+     elif x == 10: # Verdadero
+           print("anidado: x == 10")
+     else:
+           print("anidado: else")
+     else:
+        print("else")
+    #+END_SRC
+
+** Ciclos en Python
+#+BEGIN_CENTER
+mientras haya algo que hacer hazlo
+#+END_CENTER
+*** While
+En Python, un ciclo se puede representar de la siguiente manera:
+#+BEGIN_SRC python
+while expresión_condicional:
+    instrucción
+#+END_SRC
+while repite la ejecución siempre que la condición se evalúe como True.
+
+Ahora, es importante recordar que:
+
++ Si deseas ejecutar más de una declaración dentro de un while, debes (como con if) poner sangría a todas las instrucciones de la misma manera.
++ Una instrucción o conjunto de instrucciones ejecutadas dentro del while se llama el cuerpo del ciclo.
++ Si la condición es False (igual a cero) tan pronto como se compruebe por primera vez, el cuerpo no se ejecuta ni una sola vez (ten en cuenta la analogía de no tener que hacer nada si no hay nada que hacer).
++ El cuerpo debe poder cambiar el valor de la condición, porque si la condición es True al principio, el cuerpo podría funcionar continuamente hasta el infinito. Observa que hacer una cosa generalmente disminuye la cantidad de cosas por hacer.
+**** Un bucle o ciclo infinito
+Un ciclo infinito, también denominado ciclo sin fin, es una secuencia de instrucciones en un programa que se repite indefinidamente (ciclo sin fin).
+#+BEGIN_SRC python
+while True:
+    print("Estoy atrapado dentro de un ciclo")
+#+END_SRC
+
+
+**EJERCICIO**
+[Adivina  el número secreto]()
+
+*** For
+Otro tipo de ciclo disponible en Python proviene de la observación de que a veces es más importante contar los "giros o vueltas" del ciclo que verificar las condiciones. El ciclo for está diseñado para realizar tareas más complicadas, puede "explorar" grandes colecciones de datos elemento por elemento.
+#+BEGIN_SRC python
+ for i in range (100):
+    #hacer algo()
+    pass
+#+END_SRC
+
++ La palabra reservada for abre el ciclo for; nota - No hay condición después de eso; no tienes que pensar en las condiciones, ya que se verifican internamente, sin ninguna intervención.
++ Cualquier variable después de la palabra reservada for es la **variable de control del ciclo**; cuenta los giros del ciclo y lo hace automáticamente.
++ La palabra reservada in introduce un elemento de sintaxis que describe el rango de valores posibles que se asignan a la variable de control.
++ La función range() (esta es una función muy especial) es responsable de generar todos los valores deseados de la variable de control; en nuestro ejemplo, la función creará (incluso podemos decir que alimentará el ciclo con) valores subsiguientes del siguiente conjunto: 0, 1, 2 .. 97, 98, 99; nota: en este caso, la función range() comienza su trabajo desde 0 y lo finaliza un paso (un número entero) antes del valor de su argumento.
++ Nota la palabra clave pass dentro del cuerpo del ciclo - no hace nada en absoluto; es una instrucción vacía : la colocamos aquí porque la sintaxis del ciclo for exige al menos una instrucción dentro del cuerpo (por cierto, if, elif, else y while expresan lo mismo).
+
+***** EJEMPLOS
+
+#+BEGIN_SRC python
+for i in range(2, 8, 3):
+    print("El valor de i es actualmente", i)
+#NO IMPRIME NADA
+for i in range(1, 1):
+    print("El valor de i es actualmente", i)
+
+#PRIMERAS POTENCIAS DE DOS
+pow = 1
+for exp in range(16):
+    print ("2 a la potencia de", exp, "es", pow)
+    pow * = 2
+#+END_SRC
+
+***** EJERCICIOS
+
++ [Aspectos fundamentales del ciclo for: el conteo]()
+
+*** Las declaraciones break y continue
+Podrías enfrentar las siguientes opciones:
++ Parece que no es necesario continuar el ciclo en su totalidad; se debe abstener
+  de seguir ejecutando el cuerpo del ciclo e ir más allá.
++ Parece que necesitas comenzar el siguiente giro del ciclo sin completar la ejecución del turno actual.
+
+Python proporciona dos instrucciones especiales para la implementación de estas dos tareas.
+
+**** Nota:
+Tales adiciones, que no mejoran el poder expresivo del lenguaje, sino que solo simplifican el trabajo del desarrollador, a veces se denominan dulces sintácticos o azúcar sintáctica.
+
+Estas dos instrucciones son:
+
++ Break: Sale del ciclo inmediatamente, e incondicionalmente termina la operación del ciclo; el programa comienza a ejecutar la instrucción más cercana después del cuerpo del ciclo.
++ Continue: Se comporta como si el programa hubiera llegado repentinamente al final del cuerpo; el siguiente turno se inicia y la expresión de condición se prueba de inmediato.
+**** EJERCICIO
++ [Atascado en un ciclo]()
++ [El Feo Devorador de Vocales]()
++ [El Bonito Devorador de Vocales]()
+
+*** El while y la opción else
+los ciclos también pueden tener la rama else, como los if.
+
+La rama else del ciclo siempre se ejecuta una vez, independientemente de si el ciclo ha entrado o no en su cuerpo .
+
+#+BEGIN_SRC python
+i = 5
+while i < 5:
+    print(i)
+    i += 1
+else:
+    print("else:", i)
+
+i = 111
+for i in range(2, 1):
+    print(i)
+else:
+    print("else:", i)
+    #+END_SRC
+    Nota: si la variable de control no existe antes de que comience el ciclo, no existirá cuando la ejecución llegue a la rama else
+
+***** EJERCICIOS
++ [WHILE]()
++ [ Hipótesis de Collatz]()
+** Puntos Clave
+1. Hay dos tipos de ciclos en Python: while y for:
+   + El ciclo while ejecuta una sentencia o un conjunto de declaraciones siempre que una condición booleana especificada sea verdadera, por ejemplo:
+     #+BEGIN_SRC python
+     # Ejemplo 1
+     while True:
+         print("Atascado en un ciclo infinito")
+
+     # Ejemplo 2
+    contador = 5
+    while contador > 2:
+        print(contador)
+        contador -= 1
+     #+END_SRC
+  + El ciclo for ejecuta un conjunto de sentencias muchas veces; se usa para iterar sobre una secuencia (por ejemplo, una lista, un diccionario, una tupla o un conjunto; pronto aprenderás sobre ellos) u otros objetos que son iterables (por ejemplo, cadenas). Puedes usar el ciclo for para iterar sobre una secuencia de números usando la función incorporada range. Mira los ejemplos a continuación:
+    #+BEGIN_SRC python
+# Ejemplo 1
+palabra = "Python"
+for letter in palabra:
+    print(letter, fin = "*")
+
+# Ejemplo 2
+for i in range(1, 10):
+    if i % 2 == 0:
+        print(i)
+        #+END_SRC
+2. Puedes usar las sentencias break y continue para cambiar el flujo de un ciclo:
+   + Utiliza break para salir de un ciclo, por ejemplo:
+     #+BEGIN_SRC python
+     texto = "OpenEDG Python Institute"
+     for letter in texto:
+        if letter == "P":
+            break
+        print(letter, end= "")
+    #+END_SRC
+   + Utiliza continue para omitir la iteración actual, y continuar con la siguiente iteración, por ejemplo:
+     #+BEGIN_SRC python
+     text = "pyxpyxpyx"
+     for letter in text:
+        if letter == "x":
+            continue
+        print(letter, end= "")
+
+** Operaciones lógicas y de bits en Python
+*** Operadores lógicos
++ and
+   Un operador de conjunción lógica en Python es la palabra y. Es un operador binario con una prioridad inferior a la expresada por los operadores de comparación.
+   #+BEGIN_SRC python
+   contador > 0 and valor == 100
+   #+END_SRC
+   El resultado proporcionado por el operador and se puede determinar sobre la base de la tabla de verdad.
+   | A     | B     | A and B |
+   |-------+-------+---------|
+   | False | False | False   |
+   | False | True  | False   |
+   | True  | False | False   |
+   | True  | True  | True    |
++ or
+  Un operador de disyunción es la palabra or. Es un operador binario con una prioridad más baja que and (al igual que + en comparación con *). Su tabla de verdad es la siguiente:
+  | A     | B     | A or B |
+  |-------+-------+--------|
+  | False | False | False  |
+  | False | True  | True   |
+  | True  | False | True   |
+  | True  | True  | True   |
++ not
+  Es un operador unario que realiza una negación lógica. Su funcionamiento es simple: convierte la verdad en falso y lo falso en verdad.
+
+*** Operadores bitwise
+Permiten manipular bits de datos individuales.
+Cubren todas las operaciones que mencionamos anteriormente en el contexto lógico, y un operador adicional. Este es el operador xor (como en o exclusivo ), y se denota como ^ (signo de intercalación).
+
+Aquí están todos ellos:
+
++  &  (ampersand) - conjunción a nivel de bits.
++  |  (barra vertical) - disyunción a nivel de bits.
++  ~  (tilde) - negación a nivel de bits.
++  ^  (signo de intercalación) - exclusivo a nivel de bits o (xor).
+| A | B | B&A | A\  B | A^B |
+|---+---+-----+-------+-----|
+| 0 | 0 |   0 |     0 |   0 |
+| 0 | 1 |   0 |     1 |   1 |
+| 1 | 0 |   0 |     1 |   1 |
+| 1 | 1 |   1 |     1 |   0 |
+Hagámoslo más fácil:
+
++  &  requieres exactamente dos  1  s para proporcionar  1  como resultado.
++  |  requiere al menos un  1  para proporcionar  1  como resultado.
++  ^  requiere exactamente un  1  para proporcionar  1  como resultado.
+
+** Puntos Clave
+1. Python es compatible con los siguientes operadores lógicos:
+   + and → si ambos operandos son verdaderos, la condición es verdadera, por ejemplo, (True and True) es True.
+   + or → si alguno de los operandos es verdadero, la condición es verdadera, por ejemplo, (True or False) es True.
+   + not → devuelve False si el resultado es verdadero y devuelve True si es falso, por ejemplo, not True es False.
+2. Puedes utilizar operadores bit a bit para manipular bits de datos individuales. Los siguientes datos de muestra:
+   + x = 15, el cual es  0000 1111  en binario.
+   + y = 16, el cual es  0001 0000  en binario.
+   Se utilizarán para ilustrar el significado de operadores bit a bit en Python. Analiza los ejemplos a continuación:
+   + & hace un bit a bit and (y), por ejemplo, x & y = 0, el cual es 0000 0000 en binario.
+   + | hace un bit a bit or (o), por ejemplo, x | y = 31, el cual es 0001 1111 en binario.
+   + ˜ hace un bit a bit not (no), por ejemplo, ˜ x = 240, el cual es 1111 0000 en binario.
+   + ^ hace un bit a bit xor, por ejemplo, x ^ y = 31, el cual es 0001 1111 en binario.
+   + >> hace un desplazamiento bit a bit a la derecha, por ejemplo, y >> 1 = 8, el cual es 0000 1000 en binario.
+   + << hace un desplazamiento bit a bit a la izquierda, por ejemplo, y << 3 = , el cual es 1000 0000 en binario.
+** Listas-Colecciones de datos
+
+Nuestra lista es una colección de elementos, pero cada elemento es un escalar.
+(**Escalares**: declarar variables que pueden almacenar exactamente un valor dado a la vez.)
+
++ Variables de **múltiples valores**.
++ La lista comienza con un corchete abierto y termina con un corchete cerrado ; el espacio entre los corchetes es llenado con cinco números separados por comas.
++ Los elementos dentro de una lista pueden tener **diferentes tipos**.
++ Python ha adoptado una convención que indica que los elementos de una lista están siempre numerados desde cero.
++ Una lista puede variar durante la ejecución. Se pueden agregar nuevos elementos a la lista, mientras que otros pueden eliminarse de ella. Esto significa que la lista es una entidad muy dinámica.
+*** Listas de indezación
+#+BEGIN_SRC python
+numeros = [10, 5, 7, 2, 1]
+print("Contenido de la lista original:", numeros) # imprime el contenido de la lista original
+
+numeros[0] = 111
+print("Nuevo contenido de la lista:", numeros) # contenido de la lista actual.
+#+END_SRC
+El valor dentro de los corchetes que selecciona un elemento de la lista se llama un índice, mientras que la operación de seleccionar un elemento de la lista se conoce como indexación.
+
+**Nota:** todos los índices utilizados hasta ahora son literales. Sus valores se fijan en el tiempo de ejecución, pero cualquier expresión también puede ser un índice. Esto abre muchas posibilidades.
+*** La función len()
+
+La función len() ( verificar la longitud actual de la lista)toma el nombre de la lista como un argumento y devuelve el número de elementos almacenados actualmente dentro de la lista (en otras palabras, la longitud de la lista).
+
+
+*** Eliminando elementos de una lista
+Cualquier elemento de la lista puede ser eliminado en cualquier momento, esto se hace con una instrucción llamada del (eliminar). Nota: es una instrucción, no una función.
++ Tienes que apuntar al elemento que quieres eliminar, desaparecerá de la lista y la longitud de la lista se reducirá en uno.
+
+#+BEGIN_SRC python
+del numeros[1]
+print(len(numeros))
+print(numeros)
+#+END_SRC
+*** Los índices negativos son válidos
+Un elemento con un índice igual a -1 es el último en la lista.
+#+BEGIN_SRC python
+print(numeros[-1])
+#+END_SRC
+Del mismo modo, el elemento con un índice igual a -2 es el anterior al último en la lista.
+#+BEGIN_SRC python
+print(numeros[-2])
+#+END_SRC
+
+*** EJERCICIOS
++ [Lo básico de las listas]()
+
+*** Funciones vs. métodos
+**Un método es propiedad de los datos para los que trabaja, mientras que una función es propiedad de todo el código.**
+
+  + Un método **es un tipo específico de función**: se comporta como una función y se parece a una función, pero difiere en la forma en que actúa y en su estilo de invocación.
+    - Puede cambiar el estado de una entidad seleccionada/ puede cambiar el estado interno de los datos
+    - Invocar un método requiere alguna especificación de los datos a partir de los cuales se invoca el método.(POO)
+    - Invocación de un método
+      #+BEGIN_SRC python
+      resultado =  data.method(arg)
+      #+END_SRCI
+
+        Nota: el nombre del método está precedido por el nombre de los datos que posee el método. A continuación, se agrega un punto, seguido del nombre del método y un par de paréntesis que encierran los argumentos.
+  + Una función **no pertenece a ningún dato**: obtiene datos, puede crear nuevos datos y (generalmente) produce un resultado.
+    - La función toma un argumento, hace algo y devuelve un resultado.
+    - Invocación de una función
+      ,#+BEGIN_SRC python
+      resultado =  funcion(argumento)
+      #+END_SRC
+
+*** append() e insert()
+**** append()
+Un método llamado append(). Toma el valor de su argumento y lo coloca al final de la lista que posee el método.
+La longitud de la lista aumenta en uno.
+#+BEGIN_SRC python
+lista.append(valor)
+#+END_SRC
+
+**** insert()
+El método insert() es un poco más inteligente: puede agregar un nuevo elemento en cualquier lugar de la lista, no solo al final.
+#+BEGIN_SRC python
+lista.insert(ubicación,valor)
+#+END_SRC
+
+*** Nota
+Python ofrece una forma más conveniente de hacer el intercambio, echa un vistazo:
+#+BEGIN_SRC python
+variable1 = 1
+variable2 = 2
+
+variable1, variable2 = variable2, variable1
+#+END_SRC
+*** Intercambiar elementos en listas
+#+BEGIN_SRC python
+miLista = [10, 1, 8, 3, 5]
+
+miLista [0], miLista [4] = miLista [4], miLista [0]
+miLista [1], miLista [3] = miLista [3], miLista [1]
+
+print(miLista)
+#+END_SRC
+
+** Puntos Clave
+1. La lista es un tipo de dato en Python que se utiliza para almacenar múltiples objetos. Es una colección ordenada y mutable de elementos separados por comas entre corchetes, por ejemplo:
+   #+BEGIN_SRC python
+   miLista = [1, None, True, "Soy una cadena", 256, 0]
+   #+END_SRC
+2. Las listas se pueden indexar y actualizar , por ejemplo:
+#+BEGIN_SRC python
+miLista  = [1, 1, None, True, 'Soy una cadena', 256, 0]
+print(miLista [3]) # salida: soy una cadena
+print(miLista  [-1]) # salida: 0
+
+miLista  [1] = '?'
+print (miLista) # salida: [1, '?', True, 'Soy una cadena', 256, 0]
+
+miLista.insert (0, "first")
+miLista.append ("last")
+print (miLista ) # salida: ['first', 1, '?', True, 'Soy una cadena', 256, 0, 'last']
+#+END_SRC
+3. Las listas pueden estar anidadas, por ejemplo: miLista = [1, 'a', ["lista", 64, [0, 1], False]].
+4. Los elementos de la lista y las listas se pueden eliminar, por ejemplo:
+   #+BEGIN_SRC python
+   miLista = [1, 2, 3, 4]
+   del miLista[2]
+   print(miLista) # salida: [1, 2, 4]
+
+   del miLista  # borra toda la lista
+   #+END_SRC
+5. Las listas pueden ser iteradas mediante el uso del bucle for, por ejemplo:
+   #+BEGIN_SRC python
+   miLista = ["blanco", "purpura", "azul", "amarillo", "verde"]
+
+   for color in miLista :
+     print(color)
+   #+END_SRC
+6. La función len() se puede usar para verificar la longitud de la lista, por ejemplo:
+   #+BEGIN_SRC python
+   miLista = ["blanco", "purpura", "azul", "amarillo", "verde"]
+   print(len(miLista)) # la salidas es 5
+
+   del miLista[2]
+   print (len(miLista)) # la salidas es 4
+   #+END_SRC
+7. Una invocación típica de función tiene el siguiente aspecto: resultado = funcion(argumento), mientras que una invocación típica de un método se ve así: resultado = data.method(arg).
+** Ordenando listas simples
+*** Ordenamiento Burbuja
+ Un algoritmo muy simple, fácil de entender, pero desafortunadamente, tampoco es muy eficiente. Se usa muy raramente, y ciertamente no para listas extensas.
+***** Una lista se puede ordenar de 2 maneras
++ Ascendente (o más precisamente, no descendente): si en cada par de elementos adyacentes, el primer elemento no es mayor que el segundo.
++ Descendente (o más precisamente, no ascendente): si en cada par de elementos adyacentes, el primer elemento no es menor que el segundo.
+
+
+
+
+
+  Ordenaremos la lista en orden ascendente, de modo que los números se ordenen de menor a mayor.
+  La esencia de este algoritmo es simple: comparamos los elementos adyacentes y, al intercambiar algunos de ellos, logramos nuestro objetivo.
+#+BEGIN_SRC python
+miLista = [8, 10, 6, 2, 4] # lista para ordenar
+swapped = True # lo necesitamos verdadero (True) para ingresar al bucle while
+
+while swapped:
+    swapped = False # no hay swaps hasta ahora
+    for i in range(len(miLista) - 1):
+        if miLista[i] > miLista[i + 1]:
+            swapped= True # ocurrió el intercambio!
+            miLista[i], miLista[i + 1] = miLista[i + 1], miLista[i]
+
+print(miLista)
+
+miLista = [8, 10, 6, 2, 4] # lista para ordenar
+
+for i in range(len(miLista) - 1): # necesitamos (5 - 1) comparaciones
+    if miLista[i] > miLista[i + 1]: # compara elementos adyacentes
+        miLista[i], miLista [i + 1] = miLista[i + 1], miLista[i] # si terminamos aquí significa que tenemos que intercambiar los elementos.
+
+#+END_SRC
+
+Todas las listas tienen un método denominado sort(), que las ordena lo más rápido posible. Ya has aprendido acerca de algunos de los métodos de lista anteriormente, y pronto aprenderás más sobre otros.
+*** Ordenamiento burbuja interactivo
+#+BEGIN_SRC python
+miLista = []
+swapped = True
+num = int (input("¿Cuántos elementos deseas ordenar?:"))
+
+for i in range(num):
+    val = float(input("Introduce un elemento de la lista:"))
+    miLista.append(val)
+
+while swapped:
+    swapped = False
+    for i in range(len(miLista) - 1):
+        if miLista[i] > miLista[i + 1]:
+            swapped = True
+            miLista[i], miLista[i + 1] = miLista[i + 1], miLista[i]
+
+print("\nOrdenado:")
+print(miLista)
+#+END_SRC
+** Puntos Clave
+1. Puedes usar el método sort() para ordenar los elementos de una lista, por ejemplo:
+
+#+BEGIN_SRC python
+lst = [5, 3, 1, 2, 4]
+print(lst)
+
+lst.sort ()
+print(lst) # salida: [1, 2, 3, 4, 5]
+#+END_SRC
+2. También hay un método de lista llamado reverse(), que puedes usar para invertir la lista, por ejemplo:
+   #+BEGIN_SRC python
+   lst = [5, 3, 1, 2, 4]
+   print(lst)
+
+   lst.reverse()
+   print (lst) # salida: [4, 2, 1, 3, 5]
+   #+END_SRC
+
+** Nota
++ El nombre de una variable ordinaria es el nombre de su contenido.
++ El nombre de una lista es el nombre de una ubicación de memoria donde se almacena la lista.
+#+BEGIN_SRC python
+  lista1 = [1]
+  lista2 = lista1
+  lista1[0] = 2
+  print(lista2)
+#+END_SRC
+*** Rodajas Poderosas
+Una rodaja es un elemento de la sintaxis de Python que permite hacer una copia nueva de una lista, o partes de una lista.
+#+BEGIN_SRC python
+lista1 = [1]
+lista2 = lista1[:]
+lista1[0] = 2
+print(lista2)
+#+END_SRC
+
+Una de las formas más generales de la rodaja es la siguiente:
+#+BEGIN_SRC python
+miLista[inicio:fin]
+#+END_SRC
+
+Una rodaja de este tipo crea una nueva lista (de destino), tomando elementos de la lista de origen: los elementos de los índices desde el principio hasta el fin-1.
+
++ inicio es el índice del primer elemento incluido en la rodaja.
++ fin es el índice del primer elemento no incluido en la rodaja.
++ Si elinicio especifica un elemento que se encuentra más allá del descrito por fin (desde el punto de vista inicial de la lista), la rodaja estará vacía.
++ Si omites inicio en tu rodaja, se supone que deseas obtener un segmento que comienza en el elemento con índice 0.
++ La instrucción del descrita anteriormente puede eliminar más de un elemento de la lista a la vez, también puede eliminar rodajas.
+
+** Operaciones en listas
+Python ofrece dos operadores muy poderosos, capaces de revisar la lista para verificar si un valor específico está almacenado dentro de la lista o no.
++ El primero de ellos (in) verifica si un elemento dado(su argumento izquierdo) está actualmente almacenado en algún lugar dentro de la lista(el argumento derecho) - el operador devuelve True en este caso.
++ El segundo (not in) comprueba si un elemento dado (su argumento izquierdo) está ausente en una lista - el operador devuelve True en este caso.
+  #+BEGIN_SRC python
+  elem in miLista
+  elem not in miLista
+  #+END_SRC
+
+** Puntos Clave
+1. Si tienes una lista l1, la siguiente asignación: l2 = l1 no hace una copia de la lista l1, pero hace que las variables l1 y l2 apunten a la misma lista en la memoria . Por ejemplo:
+   #+BEGIN_SRC python
+   vehiculosUno = ['carro', 'bicicleta', 'moto']
+   print(vehiculosUno) # salida: ['carro', 'bicicleta', 'moto']
+
+   vehiculosDos = vehiculosUno
+   del vehiculosUno[0] # borra 'carro'
+   print(vehiculosDos) # salida: ['bicicleta', 'moto']
+   #+END_SRC
+2. Si deseas copiar una lista o parte de la lista, puede hacerlo haciendo uso de rodajas(slicing):
+   #+BEGIN_SRC python
+   colores = ['rojo', 'verde', 'naranja']
+
+   copiaTodosColores = colores[:] # copia la lista completa
+   copiaParteColores = colores[0:2] # copia parte de la lista
+   #+END_SRC
+3. También puede utilizar índices negativos para hacer uso de rodajas. Por ejemplo:
+   #+BEGIN_SRC python
+   listaMuestra = ["A", "B", "C", "D", "E"]
+   nuevaLista = listaMuestra[2:-1]
+   print(nuevaLista) # salida: ['C', 'D']
+   #+END_SRC
+ 4. Los parámetros inicio y finson opcionales al partir en rodajas una lista: lista[inicio:fin].
+ 5. Puedes eliminar rodajas utilizando la instrucción del.
+ 6. Puedes probar si algunos elementos existen en una lista o no utilizando las palabras clave in y not in
+** Comprensión de lista
+Una comprensión de lista es en realidad una lista, pero se creó sobre la marcha durante la ejecución del programa, y no se describe de forma estática.
+#+BEGIN_SRC python
+fila = []
+
+for i in range(8):
+    row.append(PEON_BLANCO)
+# USANDO UNA LISTA X COMPRENSION
+fila = [PEON_BLANCO for i in range(8)]
+#+END_SRC
+** Listas dentro de listas: arreglos bidimensionales
+si queremos crear una lista de listas que representan todo el tablero de ajedrez, se puede hacer de la siguiente manera:
+#+BEGIN_SRC python
+tablero  = []
+
+for i in range(8):
+    fila = [EMPTY for i in range(8)]
+    tablero.append(fila)
+#+END_SRC
+Como las listas de comprensión puede ser anidadas, podemos acortar la creación del tablero de la siguiente manera:
+#+BEGIN_SRC python
+tablero = [[EMPTY for i in range(8)] for j in range(8)]
+#ARREGLOS BIDIMENSIONALES
+EMPTY = "-"
+TORRE = "TORRE"
+tablero = []
+
+for i in range(8):
+    fila = [EMPTY for i in range(8)]
+    tablero.append (fila)
+
+tablero[0][0] = TORRE
+tablero[0][7] = TORRE
+tablero[7][0] = TORRE
+tablero[7][7] = TORRE
+
+print(tablero)
+
+#+END_SRC
+** Multidimensional
+Profundicemos en la naturaleza multidimensional de las listas. Para encontrar cualquier elemento de una lista bidimensional, debes usar dos coordenadas:
+
++ Una vertical (número de fila).
++ Una horizontal (número de columna).
+
+** Puntos Clave
+1. La comprensión de listas te permite crear nuevas listas a partir de las existentes de una manera concisa y elegante. La sintaxis de una lista de comprensión es la siguiente:
+#+BEGIN_SRC python
+[expresión for elemento in lista if condicional]
+#+END_SRC
+El cual es un equivalente del siguiente código:
+#+BEGIN_SRC python
+for elemento in lista:
+    if condicional:
+        expresión
+#+END_SRC
+Este es un ejemplo de una lista de comprensión: el código siguiente crea una lista de cinco elementos con los primeros cinco números naturales elevados a la potencia de 3:
+#+BEGIN_SRC python
+cubos = [num ** 3 for num in range (5)]
+print(cubos) # salidas: [0, 1, 8, 27, 64]
+#+END_SRC
+2. Puedes usar listas anidadas en Python para crear matrices (es decir, listas bidimensionales).
+
+3. Puedes anidar tantas listas en las listas como desee y, por lo tanto, crear listas n-dimensionales, por ejemplo, arreglos de tres, cuatro o incluso sesenta y cuatro dimensiones.
