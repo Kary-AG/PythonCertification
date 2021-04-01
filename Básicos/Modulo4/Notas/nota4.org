@@ -22,8 +22,6 @@ def nombreFuncion():
 + La línea debe de terminar con dos puntos.
 + La línea inmediatamente después de def marca el comienzo del cuerpo de la función - donde varias o (al menos una). instrucción anidada, será ejecutada cada vez que la función sea invocada; nota: la función termina donde el anidamiento termina, se debe ser cauteloso.
 +  Python lee la definición de la función y la recuerda, pero no la ejecuta sin permiso.
-** El funcionamiento de las funciones
-La imagen intenta mostrar el proceso completo:
 
 + Cuando se invoca una función, Python recuerda el lugar donde esto ocurre y salta hacia dentro de la función invocada.
 + El cuerpo de la función es entonces ejecutado.
