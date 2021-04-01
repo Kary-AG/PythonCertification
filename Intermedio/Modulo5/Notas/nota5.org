@@ -1,0 +1,338 @@
+* Módulos, paquetes, cadenas, métodos de listas y excepciones.
+** ¿Qué es un módulo?
+¿Cómo se divide una pieza de software en partes separadas pero cooperantes? Esta es la pregunta. *Módulos* son la respuesta.
+El manejo de los módulos consta de dos cuestiones diferentes:
++ El primero (probablemente el más común) ocurre cuando se desea utilizar un módulo ya existente, escrito por otra persona o creado por el programador mismo en algún proyecto complejo: en este caso, se considera al programador como el *usuario* del módulo.
+  - Todos estos módulos, junto con las funciones integradas, forman la Biblioteca estándar de Python
+  - Ejemplo math: el módulo contiene una rica colección de entidades (no solo funciones) que permiten a un programador implementar efectivamente cálculos que exigen el uso de funciones matemáticas, como sen() o log().
++ El segundo ocurre cuando se desea crear un nuevo módulo, ya sea para uso propio o para facilitar la vida de otros programadores: aquí eres el *proveedor* del módulo.
+*** Importando un módulo
++ Para que un módulo sea utilizable, hay que importarlo, la importación de un módulo se realiza mediante una instrucción llamada import. Nota: import es también una palabra reservada.
++ La forma más sencilla de importar un módulo en particular es usar la instrucción de importación de la siguiente manera:
+  #+BEGIN_SRC python
+  import nombreDelModulo
+  #+END_SRC
+  La instrucción puede colocarse en cualquier parte del código, pero debe colocarse antes del primer uso de cualquiera de las entidades del módulo.
+*** Namespace
+Un namespace es un espacio en el que existen algunos nombres y los nombres no entran en conflicto entre sí (es decir, no hay dos objetos diferentes con el mismo nombre).
++ Dentro de un determinado namespace, cada nombre debe permanecer único.
++ Si el módulo de un nombre especificado *existe y es accesible* (un módulo es de hecho un *archivo fuente de Python*), Python importa su contenido, se hacen conocidos todos los *nombres definidos en el módulo*, pero no ingresan al namespace del código.
+  - Esto significa que puede tener sus propias entidades llamadas sin o pi y no serán afectadas en alguna manera por el import. En este punto, es posible que te estes preguntando cómo acceder al pi el cual viene del módulo math. Para hacer esto, se debe de mandar llamar el pi con el su nombre en el módulo original.
+    #+BEGIN_SRC python
+    nombreDelModulo.nombreDeLaEntidad
+    #+END_SRC
+  - Señala con precisión qué entidad (o entidades) del módulo son aceptables en el código:
+      #+BEGIN_SRC python
+      from nombreDelModulo import nombreOlistaDeLaEntidad
+      #+END_SRC
+      - Las entidades listadas son las unicas que son importadas del módulo indicado.
+      - Los nombres de las entidades importadas pueden ser accedidas dentro del programa.
+  - Una forma más agresiva que la presentada anteriormente:
+    #+BEGIN_SRC python
+    from module import *
+    #+END_SRC
+    - Tal instrucción importa todas las entidades del módulo indicado.
++ Si se importa un módulo y no se esta conforme con el nombre del módulo en particular (por ejemplo, sí es el mismo que el de una de sus entidades ya definidas) puede darsele otro nombre: esto se llama aliasing o renombrado.
+  #+BEGIN_SRC python
+  import module as alias
+  #+END_SRC
+*** Módulos Útiles
++ Nota:
+   La función dir() devuelve una lista ordenada alfabéticamente la cual contiene todos los nombres de las entidades disponibles en el módulo:
+   #+BEGIN_SRC  python
+    dir(module)
+   #+END_SRC
++ math()
+  #+BEGIN_SRC python
+  import math
+  math.sin(x)     #el seno de x.
+  math.cos(x)     #el coseno de x
+  math.tan(x)     #la tangente de x
+  math.asin(x)    #el arcoseno de x
+  math.pi         #una constate con un valor que es una aproximacií de pi
+  math.radians(x) #una función que convierte x de grados a radianes
+  math.degrees(x) #actuando en el otro sentido(de radianes a grados)
+  math.e          #una constante con un valor aproximado al número de Euler
+  math.exp(x)     #encontrar el valor de e^x
+  math.log(x,b)   #el log de x con base b
+  math.pow(x,y) #encontrar el valor de x^y
+  #+END_SRC
+
+*** ¿Existe aleatoriedad real en las computadoras?
+
+El módulo random ofrece algunos mecanismos que permiten operar con números pseudoaleatorios.
+Un generador de números aleatorios toma un valor llamado semilla, lo trata como un valor de entrada, calcula un número "aleatorio" basado en él (el método depende de un algoritmo elegido) y produce una nueva semilla.
++ módulo random
+  - La función general llamada random() (no debe confundirse con el nombre del módulo) produce un número flotante x entre el rango (0.0, 1.0) - en otras palabras: (0.0 <= x < 1.0).
+  - La función seed() es capaz de establecer la semilla del generador. Te mostraremos dos de sus variantes:
+    + seed() - establece la semilla con la hora actual.
+    + seed(int_value) - establece la semilla con el valor entero int_value.
+  - La función con el nombre de - choice:
+    + choice(secuencia)
+    + sample(secuencia, elementos_a_elegir=1)
+
+*** Módulo platform
+El módulo platform permite acceder a los datos de la plataforma subyacente, es decir, hardware, sistema operativo e información sobre la versión del intérprete.
++ La función platform() puede mostrar todas las capas subyacentes en un solo vistazo.Simplemente devuelve una cadena que describe el entorno.
+  #+BEGIN_SRC python
+  platform(aliased = False, terse = False)
+  #aliased->cuando se establece a True (o cualquier valor distinto de cero) puede hacer que la función presente los nombres de capa subyacentes alternativos en lugar de los comunes.
+  #terse -> cuando se establece a True (o cualquier valor distinto de cero) puede convencer a la función de presentar una forma más breve del resultado (si lo fuera posible).
+  #+END_SRC
++ La función machine()
+  Es posible que solo se desee conocer el nombre genérico del procesador que ejecuta el sistema operativo junto con Python y el código
++ La función processor() devuelve una cadena con el nombre real del procesador (si lo fuese posible).
++ La función system() devuelve el nombre genérico del sistema operativo en una cadena.
+** ¿Qué es un paquete?
+Es un paquete: en el mundo de los módulos, un paquete juega un papel similar al de una carpeta o directorio en el mundo de los archivos.
+    + los paquetes, como los módulos, pueden requerir inicialización.: Python espera que haya un archivo con un nombre muy exclusivo dentro de la carpeta del paquete:
+        #+BEGIN_SRC python
+        __init__.py.
+        #+END_SRC
+** Errores, fallas y otras plagas.
+#+BEGIN_CENTER
+Cualquier cosa que pueda salir mal, saldrá mal.
+#+END_CENTER
+*** Excepciones
+Cada vez que tu código intenta hacer algo erroneo, irresponsable o inaplicable, Python hace dos cosas:
++ Detiene tu programa.
++ Crea un tipo especial de dato, llamado excepción.
+Ambas actividades llevan por nombre lanzar una excepción.
+Python proporciona herramientas efectivas que permiten observar, identificar y manejar las excepciones eficientemente.
+
+**** ¿Cómo se manejan las excepciones?
+La receta para el éxito es la siguiente:
+- Primero, se debe intentar (try) hacer algo.
+  La palabra reservada try comienza con un bloque de código el cual puede o no estar funcionando correctamente.
+Después, Python intenta realizar la acción arriesgada: si falla, se genera una excepción y Python comienza a buscar una solución.
+- Después, tienes que comprobar si todo salió bien.
+  La palabra reservada except comienza con un bloque de código que será ejecutado si algo dentro del bloque try sale mal - si se genera una excepción dentro del bloque anterior try, fallará aquí, entonces el código ubicado después de la palabra clave except debería proporcionar una reacción adecuada a la excepción planteada.
+Se regresa al nivel de anidación anterior, es decir, se termina la sección try-except.
+#+BEGIN_SRC python
+try:
+    print("1")
+    x = 1 / 0
+    print("2")
+except:
+    print("Oh cielos, algo salio mal...")
+
+print("3")
+#+END_SRC
+No olvides que:
++ Los bloques except son analizados en el mismo orden en que aparecen en el código.
++ No debes usar más de un bloque de excepción con el mismo nombre.
++ El número de diferentes bloques except es arbitrario, la única condición es que si se emplea el try, debes poner al menos un except (nombrado o no) después de el.
++ La palabra reservada except no debe ser empleada sin que le preceda un try.
++ Si uno de los bloques except es ejecutado, ningún otro lo será.
++ Si ninguno de los bloques except especificados coincide con la excepción planteada, la excepción permanece sin manejar (lo discutiremos pronto).
++ Si un except sin nombre existe, tiene que especificarse como el último.
+Si una excepción se genera dentro de una función, puede ser manejada:
+ + Dentro de la función.
+ + Fuera de la función.
++ La instrucción raise genera la excepción especificada denominada exc como si fuese generada de manera natural:
+  La instrucción permite:
+
+    - Simular excepciones reales (por ejemplo, para probar tu estrategia de manejo de excepciones).
+    - Parcialmente manejar una excepción y hacer que otra parte del código sea responsable de completar el manejo.
++  instrucción de Python, llamada assert (afirmar).
+
+    - Evalúa la expresión.
+    - Si la expresión se evalúa como True (verdadero), o un valor numérico distinto de cero, o una cadena no vacía, o cualquier otro valor diferente de None, no hará nada más.
+    - De lo contrario, automáticamente e inmediatamente genera una excepción llamada AssertionError (en este caso, decimos que la afirmación ha fallado).
+    - Puedes ponerlo en la parte del código donde quieras estar absolutamente a salvo de datos incorrectos, y donde no estés absolutamente seguro de que los datos hayan sido examinados cuidadosamente antes (por ejemplo, dentro de una función utilizada por otra persona).
+    - El generar una excepción AssertionError asegura que tu código no produzca resultados no válidos y muestra claramente la naturaleza de la falla.
+    - Las aserciones no reemplazan las excepciones ni validan los datos, son suplementos.
+
+** Caracteres y Cadenas
++ ASCII (por sus siglas en íngles American Standard Code for Information Interchange). El Código Estándar Americano para Intercambio de Información es el más utilizado, y es posible suponer que casi todos los dispositivos modernos (como computadoras, impresoras, teléfonos móviles, tabletas, etc.) usan este código.El código ASCII emplea ocho bits para cada signo. Ocho bits significan 256 caracteres diferentes. Los primeros 128 se usan para el alfabeto latino estándar.
++ Unicode asigna caracteres únicos (letras, guiones, ideogramas, etc.) a más de un millón de puntos de código.UCS-4 emplea 32 bits (cuatro bytes) para almacenar cada caracter, y el código es solo el número único de los puntos de código Unicode.
+*** Cadenas - una breve reseña
+las cadenas de Python son secuencias inmutables, Cualquier cadena puede estar vacía. Si es el caso, su longitud es 0, No olvides que la diagonal invertida (\) empleada como un caracter de escape, no esta incluida en la longitud total de la cadena.
+
+*** Cadenas multilínea
+Este tipo de cadenas, Python ofrece una sintaxis simple, conveniente y separada, permitirá usar una cadena que ocupe más de una línea de texto.
+#+BEGIN_SRC python
+multiLinea = '''Linea #1
+Linea #2'''
+
+print(len(multiLinea))
+#+END_SRC
++ comienza con tres apóstrofes, no uno. El mismo apóstrofe triplicado se usa para terminar la cadena,pueden ser delimitadas también por comillas triples
+
+*** Operaciones con Cadenas
+En general, las cadenas pueden ser:
+ + Concatenadas (unidas). +
+ + Replicadas. *
++  la función ord()
+  el valor del punto de código ASCII/UNICODE de un caracter específico, la función necesita una cadena de un caracter como argumento - incumplir este requisito provoca una excepción TypeError, y devuelve un número que representa el punto de código del argumento.
++ La función chr()
+  obtener el carácter correspondiente,La función toma un punto de código y devuelve su carácter.Invocándolo con un argumento inválido (por ejemplo, un punto de código negativo o inválido) provoca las excepciones ValueError o TypeError.
++ la función min()
+  Esta función encuentra el elemento mínimo de la secuencia pasada como argumento.
++ la función max()
+  encuentra el elemento máximo de la secuencia.
++ el método index()
+  busca la secuencia desde el principio, para encontrar el primer elemento del valor especificado en su argumento.
++ La función list()
+   toma su argumento (una cadena) y crea una nueva lista que contiene todos los caracteres de la cadena, uno por elemento de la lista.
++ El método count()
+  cuenta todas las apariciones del elemento dentro de la secuencia.
++ El método capitalize() hace exactamente lo que dice - crea una nueva cadena con los caracteres tomados de la cadena fuente, pero intenta modificarlos de la siguiente manera:
+
+    + Si el primer caracter dentro de la cadena es una letra (nota: el primer carácter es el elemento con un índice igual a 0, no es el primer caracter visible), se convertirá a mayúsculas.
+    + Todas las letras restantes de la cadena se convertirán a minúsculas.
++ El método center() genera una copia de la cadena original, tratando de centrarla dentro de un campo de un ancho especificado.
++ El método endswith() comprueba si la cadena dada termina con el argumento especificado y devuelve True (verdadero) o False (falso), dependiendo del resultado
++ El método find() es similar al método index(), el cual ya conoces - busca una subcadena y devuelve el índice de la primera aparición de esta subcadena, pero:
+
+    + Es más seguro, no genera un error para un argumento que contiene una subcadena inexistente (devuelve -1 en dicho caso).
+    + Funciona solo con cadenas - no intentes aplicarlo a ninguna otra secuencia.
++  el método isdigit() busca sólo dígitos - cualquier otra cosa produce False (falso) como resultado.
++ El método islower() es una variante de isalpha() - solo acepta letras minúsculas.
++ El método isspace() identifica espacios en blanco solamente - no tiene en cuenta ningún otro caracter (el resultado es entonces False).
++ El método lower() genera una copia de una cadena, reemplaza todas las letras mayúsculas con sus equivalentes en minúsculas
++ El método split() divide la cadena y crea una lista de todas las subcadenas detectadas.
++ El método s#trip() combina los efectos causados por rstrip() y lstrip() - crea una nueva cadena que carece de todos los espacios en blanco iniciales y finales.
+*** Cadenas como secuencias
++ indexación
+    Las cadenas no son listas, pero pueden ser tratadas como tal en muchos casos,si deseas acceder a cualquiera de los caracteres de una cadena, puedes hacerlo usando indexación.
++ iterando
+  #+BEGIN_SRC python
+  # Iterando a través de una cadena
+
+  exampleString = 'silly walks'
+
+  for ch in exampleString:
+      print(ch, end=' ')
+
+  print()
+  #+END_SRC
++ Todo lo que sabes sobre rodajas o rebanadas es utilizable.
++ Los operadores in y not in
+  Comprueba si el argumento izquierdo (una cadena) se puede encontrar en cualquier lugar dentro del argumento derecho (otra cadena).
++ Las cadenas de Python son inmutables
+  Significa principalmente que la similitud de cadenas y listas es limitada,  no te permite usar la instrucción del para eliminar cualquier cosa de una cadena.
++ Las cadenas de Python no tienen el método append() y insert()
+
+*** Comparando cadenas
+Las cadenas en Python pueden ser comparadas usando el mismo conjunto de operadores que se emplean con los números  "pero": los resultados de tales comparaciones a veces pueden ser un poco sorprendentes, compara valores de puntos de código, caracter por caracter.
+    + Cuando se comparan dos cadenas de diferentes longitudes y la más corta es idéntica a la más larga, la cadena más larga se considera mayor.
+    + La comparación de cadenas siempre distingue entre mayúsculas y minúsculas (las letras mayúsculas se consideran menores en comparación con las minúsculas).
+    + Si una cadena contiene solo dígitos, todavía no es un número. Se interpreta como lo que es, como cualquier otra cadena regular, y su aspecto numérico (potencial) no se toma en cuenta, en ninguna manera.
+    + Comparar cadenas contra números generalmente es una mala idea.
+      - Las únicas comparaciones que puede realizar con impunidad son aquellas simbolizadas por los operadores == y !=. El primero siempre devuelve False, mientras que el segundo siempre devuelve True.
+**** Ordenamiento
+Dos formas posibles de ordenar listas que contienen cadenas.En general, Python ofrece dos formas diferentes de ordenar las listas.
+
++ La función llamada sorted(), toma un argumento (una lista) y devuelve una nueva lista
++ El método denominado sort(),no se crea una nueva lista
+
+*** Cadenas contra números
+¿cómo convertir un número (un entero o un flotante) en una cadena, y viceversa?
+La conversión de cadena a número es simple, ya que siempre es posible. Se realiza mediante una función llamada str()
+#+begin_src python
+itg = 13
+flt = 1.3
+si = str(itg)
+sf = str(flt)
+
+print(si + ' ' + sf)
+#+END_src
++ EJERCICIOS
+  - [Un Display LED]
+*** Cuatro simples programas
+**** Cifrado César
+Este cifrado fue (probablemente) inventado y utilizado por Cayo Julio César y sus tropas durante las Guerras Galas. La idea es bastante simple: cada letra del mensaje se reemplaza por su consecuente más cercano (A se convierte en B, B se convierte en C, y así sucesivamente). La única excepción es Z, la cual se convierte en A.
+#+BEGIN_SRC python
+# Cifrado César
+text = input("Ingresa tu mensaje: ")
+cifrado = ''
+for char in text:
+    if not char.isalpha():
+        continue
+    char = char.upper()
+    code = ord(char) + 1
+    if code > ord('Z'):
+        code = ord('A')
+    cifrado += chr(code)
+
+print(cifrado)
+# Cifrado César - descifrar un mensaje
+cifrado = input('Ingresa tu criptograma: ')
+text = ''
+for char in cifrado:
+    if not char.isalpha():
+        continue
+    char = char.upper()
+    code = ord(char) - 1
+    if code < ord('A'):
+        code = ord('Z')
+    text += chr(code)
+
+print(text)
+#+end_src
+
+**** El Procesador de Números
+El tercer programa muestra un método simple que permite ingresar una línea llena de números y sumarlos fácilmente. Nota: la función input(), combinada junto con las funciones int() o float(), no es lo adecuado para este propósito.
+#+begin_src python
+#Procesador de números
+
+linea = input("Ingresa una línea de números, sepáralos con espacios: ")
+strings = linea.split()
+total = 0
+try:
+    for substr in strings:
+        total += float(substr)
+    print("El total es:", total)
+except:
+    print(substr, "no es un numero.")
+#+end_src
+
+**** El Validador IBAN
+El cuarto programa implementa (en una forma ligeramente simplificada) un algoritmo utilizado por los bancos europeos para especificar los números de cuenta. El estándar llamado IBAN (Número de cuenta bancaria internacional) proporciona un método simple y bastante confiable para validar los números de cuenta contra errores tipográficos simples que pueden ocurrir durante la reescritura del número, por ejemplo, de documentos en papel, como facturas o facturas en las computadoras.
+Un número de cuenta compatible con IBAN consta de:
+
++ Un código de país de dos letras tomado del estándar ISO 3166-1 (por ejemplo, FR para Francia, GB para Gran Bretaña DE para Alemania, y así sucesivamente).
++ Dos dígitos de verificación utilizados para realizar las verificaciones de validez: pruebas rápidas y simples, pero no totalmente confiables, que muestran si un número es inválido (distorsionado por un error tipográfico) o valido.
++ El número de cuenta real (hasta 30 caracteres alfanuméricos; la longitud de esa parte depende del país).
+El estándar dice que la validación requiere los siguientes pasos (según Wikipedia):
+
++ (Paso 1) Verificar que la longitud total del IBAN sea correcta según el país (este programa no lo hará, pero puedes modificar el código para cumplir con este requisito si lo deseas; nota: pero debes enseñar al código a conocer todas las longitudes utilizadas en Europa).
++ (Paso 2) Mueve los cuatro caracteres iniciales al final de la cadena (es decir, el código del país y los dígitos de verificación).
++ (Paso 3) Reemplaza cada letra en la cadena con dos dígitos, expandiendo así la cadena, donde A = 10, B = 11 ... Z = 35.
++ (Paso 4) Interpreta la cadena como un entero decimal y calcula el residuo de ese número dividiendolo entre 97. Si el residuo es 1, pasa la prueba de verificación de dígitos y el IBAN puede ser válido.
+#+begin_src python
+# Validador IBAN
+
+iban = input("Ingresa IBAN, por favor: ")
+iban = iban.replace(' ','')
+if not iban.isalnum():
+    print("Has introducido caracteres no válidos.")
+elif len(iban) < 15:
+    print("El IBAN ingresado es demasiado corto.")
+elif len(iban) > 31:
+    print("El IBAN ingresado es demasiado largo.")
+else:
+    iban = (iban[4:] + iban[0:4]).upper()
+    iban2 = ''
+    for ch in iban:
+        if ch.isdigit():
+            iban2 += ch
+        else:
+            iban2 += str(10 + ord(ch) - ord('A'))
+    ibann = int(iban2)
+    if ibann % 97 == 1:
+        print("El IBAN ingresado es válido.")
+    else:
+        print("El IBAN ingresado no es válido.")
+        #+end_src
+
+**** EJERCICIOS
++ [Mejorando el cifrado César]()
++ [Palindromos]()
+
+** Ejercicios
++ [palindromos]()
++ [anagramas]()
++ [digito de Vida]()
++ [Encuentra una Palabra]()
