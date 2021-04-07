@@ -327,10 +327,6 @@ else:
         print("El IBAN ingresado no es válido.")
         #+end_src
 
-**** EJERCICIOS
-+ [Mejorando el cifrado César]()
-+ [Palindromos]()
-
 ** Ejercicios
 + [palindromos]()
 + [anagramas]()
