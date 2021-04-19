@@ -1,7 +1,7 @@
 * Fundamentos de Python: Módulo 6
 ** Los fundamentos de la POO
 Python es una herramienta universal para la programación procedimental y orientada a objetos.
-El enfoque orientado a objetos sugiere una forma de pensar completamente diferente. Los datos y el código están encapsulados juntos en el mismo mundo, divididos en clases.
+El enfoque *orientado* a **objetos** sugiere una forma de pensar completamente diferente. Los datos y el código están encapsulados juntos en el mismo mundo, divididos en clases.
 
  + Los métodos: funciones que se invocan desde dentro de los datos, no junto con ellos. Si puedes ver esta distinción, has dado el primer paso en la programación de objetos.
  + Las clases: Cada clase es como una receta que se puede usar cuando quieres crear un objeto útil. Puedes producir tantos objetos como necesites para resolver tu problema.
